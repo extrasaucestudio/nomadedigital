@@ -17,7 +17,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 50px;
+  font-size: 25px;
   animation:
   animated-text 1.2s steps(17, end) 1s 1 normal both
 }
