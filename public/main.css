@@ -10,6 +10,7 @@ body {
 #hello-wrapper {
   color: #fff;
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
 }
 
 .typewriter {
@@ -17,7 +18,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 15px;
+  font-size: 50px;
   animation:
   animated-text 1.2s steps(17, end) 1s 1 normal both
 }
