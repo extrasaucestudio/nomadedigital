@@ -43,7 +43,7 @@
             <td>
               <header>
                 
-                <h1 title="Cliquez pour en savoir plus">Jordan Bourbonnais - Web Guru</h1>
+                <h1 data-tooltip="Cliquez pour en savoir plus">Jordan Bourbonnais - Web Guru</h1>
 
                 <p>Rejoignez ma tribu et transformez votre vie de développeur en ligne</p>
             </header>
@@ -119,5 +119,24 @@
     <script type='text/javascript' src='globe.js'></script>
 
   </center>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const elementsWithTooltip = document.querySelectorAll("[data-tooltip]");
+        elementsWithTooltip.forEach((element) => {
+            const tooltipText = element.getAttribute("data-tooltip");
+            const tooltip = document.createElement("div");
+            tooltip.className = "tooltip";
+            tooltip.innerHTML = tooltipText;
+
+            element.addEventListener("mouseenter", function () {
+                element.appendChild(tooltip);
+            });
+
+            element.addEventListener("mouseleave", function () {
+                element.removeChild(tooltip);
+            });
+        });
+    });
+</script>
   </body>
 </html>
