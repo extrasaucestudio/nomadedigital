@@ -58,7 +58,7 @@
                     <li>Ma bibliotheque personnel de 10GO de codes/scripts/banque d'images/tutoriels/outils</li>
                     <li>Des vidéos riches en connaissances</li>
                     <li>Accès à des repos GitHub privés de grande valeur(app Android/plateformes web)</li>
-                    <li>Mentorat direct avec Jordan Bourbonnais</li>
+                    <li data-popup="popup">Mentorat direct avec Jordan Bourbonnais</li>
                 </ul>
                 <p>Ne manquez pas cette opportunité unique de réussite en ligne.</p>
             </section>
@@ -119,5 +119,27 @@
     <script type='text/javascript' src='globe.js'></script>
 
   </center>
+  <div id="popup" style="display: none;">
+    <h2>Contenu de la popup</h2>
+    <p>Voici le texte que vous voulez afficher dans la popup.</p>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const popups = document.querySelectorAll("[data-popup]");
+      popups.forEach((popupTrigger) => {
+          const targetPopupId = popupTrigger.getAttribute("data-popup");
+          const targetPopup = document.getElementById(targetPopupId);
+
+          popupTrigger.addEventListener("mouseenter", function () {
+              targetPopup.style.display = "block";
+          });
+
+          popupTrigger.addEventListener("mouseleave", function () {
+              targetPopup.style.display = "none";
+          });
+      });
+  });
+</script>
+
   </body>
 </html>
