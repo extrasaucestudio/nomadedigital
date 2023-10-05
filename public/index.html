@@ -7,21 +7,71 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/main.css">
     <link rel="icon" href="favicon.ico" />
-    <script>function showChuPopup(e,text){
-      if(document.all)e = event;
-      
-      var obj = document.getElementById('chu_popup');
-      var obj2 = document.getElementById('chu_popup_text');
-      obj2.innerHTML = text;
-      obj.style.display = 'block';
-      var st = Math.max(document.body.scrollTop,document.documentElement.scrollTop);/*
-      if(navigator.userAgent.toLowerCase().indexOf('safari')>=0)st=0;*/
-      var leftPos = e.clientX - 100;
-      if(leftPos<0)leftPos = 0;
-      obj.style.left = leftPos + 'px';
-      obj.style.top = e.clientY - obj.offsetHeight -1 + st + 'px';} function endChuPopup() {
-      document.getElementById('chu_popup').style.display = 'none';} function touchHandler(e){
-      document.getElementById('chu_popup').style.display = 'none';}</script>
+    <script type="text/javascript">
+      //--indicates the mouse is currently over a div
+      var onDiv = false;
+      //--indicates the mouse is currently over a link
+      var onLink = false;
+      //--indicates that the bubble currently exists
+      var bubbleExists = false;
+      //--this is the ID of the timeout that will close the window if the user mouseouts the link
+      var timeoutID;
+  
+      function addBubbleMouseovers(mouseoverClass) {
+          $("."+mouseoverClass).mouseover(function(event) {
+              if (onDiv || onLink) {
+                  return false;
+              }
+  
+              onLink = true;
+  
+              showBubble.call(this, event);
+          });
+  
+          $("." + mouseoverClass).mouseout(function() {
+              onLink = false;
+              timeoutID = setTimeout(hideBubble, 150);
+          });
+      }
+  
+      function hideBubble() {
+          clearTimeout(timeoutID);
+          //--if the mouse isn't on the div then hide the bubble
+          if (bubbleExists && !onDiv) {
+               $("#bubbleID").remove();
+  
+               bubbleExists = false;
+          }
+      }
+  
+      function showBubble(event) {
+          if (bubbleExists) {
+              hideBubble();
+          }
+  
+          var tPosX = event.pageX + 15;
+          var tPosY = event.pageY - 60;
+          $('<div ID="bubbleID" style="top:' + tPosY + '; left:' + tPosX + '; position: absolute; display: inline; border: 2px; width: 200px; height: 150px; background-color: Red;">TESTING!!!!!!!!!!!!</div>').mouseover(keepBubbleOpen).mouseout(letBubbleClose).appendTo('body');
+  
+          bubbleExists = true;
+      }
+  
+      function keepBubbleOpen() {
+          onDiv = true;
+      }
+  
+      function letBubbleClose() {
+          onDiv = false;
+  
+          hideBubble();
+      }
+  
+  
+      //--TESTING!!!!!
+      $("document").ready(function() {
+          addBubbleMouseovers("temp1");
+      });
+  </script>
   </head>
   <body>
     <center>
@@ -89,7 +139,7 @@
          </table>
        <a class="btn btn-primary mb-5" href="#">Devenez Digital Nomade avec Jordan Bourbonnais</a>
        <br><br>
-       <a style="cursor:pointer;" onclick="showChuPopup(event,'<b>’Twas</b><br />It was の省略');return false;" onmouseover="showChuPopup(event,'<b>’Twas</b><br />It was の省略');" onmouseout="endChuPopup();">’Twas</a>
+       <a href="" class="temp1">Mouseover this for a terribly ugly red bubble!</a>
 
        <!--
 
